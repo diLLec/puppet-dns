@@ -100,7 +100,13 @@ class dns::config {
           ]
         }
       }
-    }
 
+      file { "${localzonepath}":
+        owner   => root,
+        group   => root,
+        mode    => '0755',
+        content => template('dns/named.rfc1912.zones.erb'),
+      }
+    }
   }
 }
