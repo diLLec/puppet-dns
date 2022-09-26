@@ -86,27 +86,5 @@ class dns::config {
       mode    => '0644',
       content => template($dns::sysconfig_template),
     }
-
-    if $dns::redhat_scl {
-      ['dig', 'nsupdate'].each | $util | {
-        file { "/usr/bin/${util}":
-          ensure  => file,
-          owner   => root,
-          group   => root,
-          mode    => '0755',
-          content => [
-            '#!/bin/bash',
-            "scl enable isc-bind -- ${util} $@"
-          ]
-        }
-      }
-
-      file { "${localzonepath}":
-        owner   => root,
-        group   => root,
-        mode    => '0755',
-        content => template('dns/named.rfc1912.zones.erb'),
-      }
-    }
   }
 }
