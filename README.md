@@ -73,6 +73,22 @@ dns::logging_channels:
     syslog_facility: 'auth'
 ```
 
+## isc-bind Software Collections usage
+If you plan to use the isc-bind SCL packages (https://copr.fedorainfracloud.org/coprs/isc/bind/) the switch 'dns::globals::scl'
+must be set.
+
+This can be accomplished by using hiera
+```yaml
+dns::globals::scl: true
+``
+
+or class instantiation.
+```puppet
+class { 'dns::globals':
+  scl => true
+}
+```
+
 # Credits
 
 Based on zleslie-dns, with a lot of the guts ripped out. Thanks
