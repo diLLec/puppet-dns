@@ -548,7 +548,7 @@ describe 'dns' do
           let(:manifest) do
             <<-EOS
           class { 'dns::globals':
-            scl => true
+            scl => 'isc-bind'
           }
           include dns
             EOS
