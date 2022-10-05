@@ -15,8 +15,18 @@ class dns::install {
   }
 
   if $facts['os']['family'] in ['RedHat'] and $dns::globals::scl {
-    ['dig', 'nsupdate', 'rndc'].each | $util | {
+    ['dig', 'nsupdate'].each | $util | {
       file { "/usr/bin/${util}":
+        ensure  => file,
+        owner   => root,
+        group   => root,
+        mode    => '0755',
+        content => epp('dns/scl_util.epp', { 'util' => $util, 'sclenvname' => $dns::sclenvname }),
+        require => $pkg_req
+      }
+    }
+    ['rndc'].each | $util | {
+      file { "/usr/sbin/${util}":
         ensure  => file,
         owner   => root,
         group   => root,
