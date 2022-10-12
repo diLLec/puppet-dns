@@ -57,8 +57,9 @@ class dns::params inherits dns::globals {
         $defaultzonepath = 'unmanaged'
         $publicviewpath = "${dnsdir}/zones.conf"
         $viewconfigpath = "${dnsdir}/views"
-        $dns_server_package = 'isc-bind'
-        $namedservicename = 'isc-bind-named.service'
+        # Install the SCL meta package to pull in utils
+        $dns_server_package = $sclenvname
+        $namedservicename = "${sclenvname}-named.service"
 
         $rndcconfgen = "${sclroot}/usr/sbin/rndc-confgen"
         $named_checkconf = "${sclroot}/usr/bin/named-checkconf"
