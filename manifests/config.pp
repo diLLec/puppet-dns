@@ -98,9 +98,9 @@ class dns::config {
       content => file('dns/named.rfc1912.zones'),
     }
     ['named.loopback', 'named.empty', 'named.localhost'].each |$localzone_file| {
-      file { "${dns::zonefilepath}/$localzone_file":
-        owner   => root,
-        group   => root,
+      file { "${dns::vardir}/$localzone_file":
+        owner   => $dns::user,
+        group   => $dns::group,
         mode    => '0755',
         content => file('dns/named.rfc1912.zonefile'),
       }
