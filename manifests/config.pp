@@ -91,7 +91,7 @@ class dns::config {
   # the RedHat SCL packages do not consist of the default rfc1912 zones file
   # therefore the file is created out of this module
   if $facts['os']['family'] == 'RedHat' and $dns::globals::scl {
-    file { "${dns::params::localzonepath}":
+    file { $dns::localzonepath:
       owner   => root,
       group   => root,
       mode    => '0755',
@@ -104,5 +104,6 @@ class dns::config {
         mode    => '0755',
         content => file('dns/named.rfc1912.zonefile'),
       }
+    }
   }
 }
