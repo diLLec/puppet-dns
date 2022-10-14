@@ -566,12 +566,6 @@ describe 'dns' do
               mode: '0755',
               content: /.*isc-bind.*/
             )
-            should contain_file('/etc/opt/isc/scls/isc-bind/named.rfc1912.zones').with(
-              owner: 'root',
-              group: 'root',
-              mode: '0755',
-              content: /.*localdomain.*/
-            )
           }
         end
       end
