@@ -53,7 +53,7 @@ class dns::params inherits dns::globals {
         $vardir = "${sclvar}/named/data"
         $optionspath = "${dnsdir}/options.conf"
         $zonefilepath = "${vardir}/dynamic"
-        $localzonepath = "unmanaged"
+        $localzonepath = "${dnsdir}/named.rfc1912.zones"
         $defaultzonepath = 'unmanaged'
         $publicviewpath = "${dnsdir}/zones.conf"
         $viewconfigpath = "${dnsdir}/views"
